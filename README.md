@@ -6,11 +6,13 @@
 ## Installation
 In the dependencies: section of your pubspec.yaml, add the following line:
 
-<div class="highlight highlight-source-yaml"><pre>  <span class="pl-ent">pin_code_view</span>: <span class="pl-s">0.0.1</span></pre></div>
+```
+horizontal_calendar:0.0.1
+```
+
 ## Usage
 
-<div class="highlight highlight-source-yaml"><pre>  <span class="pl-ent">
-
+```
 import 'package:horizontal_calendar/horizontal_calendar.dart';
 
 class MyApp extends StatelessWidget {
@@ -46,4 +48,4 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
-</span></pre></div>
+```
