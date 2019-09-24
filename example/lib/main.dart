@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: HorizontalCalendar(
-        date: DateTime.now(),
+        date: DateTime.now().add(Duration(days: 1)),
         textColor: Colors.black45,
         backgroundColor: Colors.white,
         selectedColor: Colors.blue,

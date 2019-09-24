@@ -9,6 +9,8 @@ typedef OnDateSelected(date);
 
 class HorizontalCalendar extends StatefulWidget {
   final DateTime date;
+  final DateTime initialDate;
+  final DateTime lastDate;
   final Color textColor;
   final Color backgroundColor;
   final Color selectedColor;
@@ -17,6 +19,8 @@ class HorizontalCalendar extends StatefulWidget {
   HorizontalCalendar({
     Key key,
     @required this.date,
+    this.initialDate,
+    this.lastDate,
     this.textColor,
     this.backgroundColor,
     this.selectedColor,
@@ -35,7 +39,7 @@ class _CalendarState extends State<HorizontalCalendar> {
   void initState() {
     super.initState();
 
-    selecteDate = widget.date.add(Duration(days: 1));
+    selecteDate = widget.date;
   }
 
   @override
@@ -121,7 +125,8 @@ class _CalendarState extends State<HorizontalCalendar> {
                 size: 20.0,
               ),
               onPressed: () async {
-                DateTime date = await selectDate(selecteDate, context);
+                DateTime date = await selectDate(
+                    selecteDate, widget.initialDate, widget.lastDate, context);
                 widget.onDateSelected(Utils.getDate(date));
                 setState(() => selecteDate = date);
               },
@@ -133,13 +138,14 @@ class _CalendarState extends State<HorizontalCalendar> {
   }
 }
 
-Future<DateTime> selectDate(DateTime time, BuildContext context) async {
+Future<DateTime> selectDate(DateTime date, DateTime initialDate,
+    DateTime lastDate, BuildContext context) async {
   return await showDatePicker(
-    initialDatePickerMode: DatePickerMode.day,
     context: context,
-    initialDate: time,
-    firstDate: DateTime.now(),
-    lastDate: DateTime.now().add(Duration(days: 30)),
+    initialDatePickerMode: DatePickerMode.day,
+    initialDate: date,
+    firstDate: initialDate ?? DateTime.now().subtract(Duration(days: 30)),
+    lastDate: lastDate ?? DateTime.now().add(Duration(days: 30)),
     builder: (context, Widget child) {
       return Theme(
         data: ThemeData(
