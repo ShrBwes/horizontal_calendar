@@ -11,6 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  intl: ^0.15.0
+  nepali_utils: ^2.0.0+2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
