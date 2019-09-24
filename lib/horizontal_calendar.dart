@@ -125,8 +125,7 @@ class _CalendarState extends State<HorizontalCalendar> {
                 size: 20.0,
               ),
               onPressed: () async {
-                DateTime date = await selectDate(
-                    selecteDate, widget.initialDate, widget.lastDate, context);
+                DateTime date = await selectDate();
                 widget.onDateSelected(Utils.getDate(date));
                 setState(() => selecteDate = date);
               },
@@ -136,25 +135,15 @@ class _CalendarState extends State<HorizontalCalendar> {
       ),
     );
   }
-}
 
-Future<DateTime> selectDate(DateTime date, DateTime initialDate,
-    DateTime lastDate, BuildContext context) async {
-  return await showDatePicker(
-    context: context,
-    initialDatePickerMode: DatePickerMode.day,
-    initialDate: date,
-    firstDate: initialDate ?? DateTime.now().subtract(Duration(days: 30)),
-    lastDate: lastDate ?? DateTime.now().add(Duration(days: 30)),
-    builder: (context, Widget child) {
-      return Theme(
-        data: ThemeData(
-          primaryColor: Colors.blue,
-          selectedRowColor: Colors.blue,
-          textSelectionColor: Colors.blue,
-        ),
-        child: child,
-      );
-    },
-  );
+  Future<DateTime> selectDate() async {
+    return await showDatePicker(
+      context: context,
+      initialDatePickerMode: DatePickerMode.day,
+      initialDate: selecteDate,
+      firstDate:
+          widget.initialDate ?? DateTime.now().subtract(Duration(days: 30)),
+      lastDate: widget.lastDate ?? DateTime.now().add(Duration(days: 30)),
+    );
+  }
 }
