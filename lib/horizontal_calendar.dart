@@ -16,11 +16,11 @@ class HorizontalCalendar extends StatefulWidget {
 
   HorizontalCalendar({
     Key key,
-    this.date,
+    @required this.date,
     this.textColor,
     this.backgroundColor,
     this.selectedColor,
-    this.onDateSelected,
+    @required this.onDateSelected,
   }) : super(key: key);
 
   @override
@@ -45,8 +45,9 @@ class _CalendarState extends State<HorizontalCalendar> {
 
     return Container(
       height: width * 0.1428,
-      decoration: BoxDecoration(color: widget.backgroundColor),
-      margin: EdgeInsets.symmetric(horizontal: 5.0),
+      decoration: BoxDecoration(
+        color: widget.backgroundColor ?? Colors.white,
+      ),
       child: ListView(
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
@@ -59,25 +60,23 @@ class _CalendarState extends State<HorizontalCalendar> {
             itemBuilder: (context, index) {
               DateTime _date = _startDate.add(Duration(days: index));
               int diffDays = _date.difference(selecteDate).inDays;
-              int checkPastDate = _date.difference(_date).inDays;
+              int checkPastDate = _date.difference(DateTime.now()).inDays;
 
               return Container(
                 width: (width - 10) * 0.125,
                 color: diffDays != 0
-                    ? widget.backgroundColor
-                    : widget.selectedColor,
+                    ? widget.backgroundColor ?? Colors.white
+                    : widget.selectedColor ?? Colors.blue,
                 alignment: Alignment.center,
                 child: FlatButton(
                   padding: EdgeInsets.symmetric(horizontal: 2.0),
                   onPressed: () {
                     if (checkPastDate >= 0) {
                       widget.onDateSelected(Utils.getDate(_date));
-                      setState(
-                        () {
-                          selecteDate = _startDate.add(Duration(days: index));
-                          _startDate = _startDate.add(Duration(days: index));
-                        },
-                      );
+                      setState(() {
+                        selecteDate = _startDate.add(Duration(days: index));
+                        _startDate = _startDate.add(Duration(days: index));
+                      });
                     }
                   },
                   child: Column(
@@ -86,9 +85,11 @@ class _CalendarState extends State<HorizontalCalendar> {
                       Text(
                         Utils.getDayOfWeek(_date),
                         style: TextStyle(
-                          color: checkPastDate >= 0
-                              ? widget.textColor
-                              : widget.textColor.withOpacity(0.8),
+                          color: diffDays != 0
+                              ? checkPastDate >= 0
+                                  ? widget.textColor ?? Colors.black45
+                                  : Colors.grey[300]
+                              : Colors.white,
                           fontSize: 10.0,
                         ),
                       ),
@@ -96,9 +97,11 @@ class _CalendarState extends State<HorizontalCalendar> {
                       Text(
                         Utils.getDayOfMonth(_date),
                         style: TextStyle(
-                          color: checkPastDate >= 0
-                              ? widget.textColor
-                              : widget.textColor.withOpacity(0.8),
+                          color: diffDays != 0
+                              ? checkPastDate >= 0
+                                  ? widget.textColor ?? Colors.black45
+                                  : Colors.grey[300]
+                              : Colors.white,
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                         ),
@@ -110,12 +113,11 @@ class _CalendarState extends State<HorizontalCalendar> {
             },
           ),
           Container(
-            decoration: BoxDecoration(color: widget.backgroundColor),
             child: IconButton(
               padding: EdgeInsets.symmetric(horizontal: 5.0),
               icon: Icon(
                 Icons.calendar_today,
-                color: widget.textColor,
+                color: widget.textColor ?? Colors.black45,
                 size: 20.0,
               ),
               onPressed: () async {
@@ -129,24 +131,24 @@ class _CalendarState extends State<HorizontalCalendar> {
       ),
     );
   }
+}
 
-  Future<DateTime> selectDate(DateTime time, BuildContext context) async {
-    return await showDatePicker(
-      initialDatePickerMode: DatePickerMode.day,
-      context: context,
-      initialDate: time,
-      firstDate: DateTime.now(),
-      lastDate: DateTime.now().add(Duration(days: 30)),
-      builder: (context, Widget child) {
-        return Theme(
-          data: ThemeData(
-            primaryColor: widget.selectedColor,
-            selectedRowColor: widget.selectedColor,
-            textSelectionColor: widget.selectedColor,
-          ),
-          child: child,
-        );
-      },
-    );
-  }
+Future<DateTime> selectDate(DateTime time, BuildContext context) async {
+  return await showDatePicker(
+    initialDatePickerMode: DatePickerMode.day,
+    context: context,
+    initialDate: time,
+    firstDate: DateTime.now(),
+    lastDate: DateTime.now().add(Duration(days: 30)),
+    builder: (context, Widget child) {
+      return Theme(
+        data: ThemeData(
+          primaryColor: Colors.blue,
+          selectedRowColor: Colors.blue,
+          textSelectionColor: Colors.blue,
+        ),
+        child: child,
+      );
+    },
+  );
 }
