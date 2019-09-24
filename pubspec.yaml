@@ -2,7 +2,7 @@ name: horizontal_calendar
 description: A flutter plugin to show horizontal view of calendar with date picker.
 version: 0.0.1
 author: Biwesh Shrestha <biweshshr@gmail.com>
-homepage:
+homepage: https://github.com/BwesShr/horizontal_calendar
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
