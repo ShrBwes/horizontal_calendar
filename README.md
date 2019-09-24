@@ -3,4 +3,4 @@
  
 ![calendar image](screenshot.jpg)
 
-##Installation
+# Installation
