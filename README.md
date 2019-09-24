@@ -40,5 +40,5 @@ class MyHomePage extends StatelessWidget {
 ## Example
 
 ```
-View the Flutter app in the [example directory](https://github.com/BwesShr/horizontal_calendar/tree/master/example).
+View the Flutter app in the example directory in the repository.
 ```
