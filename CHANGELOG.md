@@ -8,4 +8,8 @@
 
 ### 0.0.3
 
-* Error Fix.
+* Bug Fix.
+
+### 0.0.4
+
+* Bug Fix.
