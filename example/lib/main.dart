@@ -1,10 +1,12 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:horizontal_calendar/horizontal_calendar.dart';
 
-
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,36 +14,42 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Horizontal Calendar Demo'),
+      home: const MyHomePage(title: 'Horizontal Calendar Demo'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  const MyHomePage({
+    Key? key,
+    this.title,
+  }) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title!),
       ),
       body: HorizontalCalendar(
-        date: DateTime.now().add(Duration(days: 1)),
-        textColor: Colors.black45,
+        date: DateTime.now().add(const Duration(days: 1)),
+        initialDate: DateTime.now().subtract(const Duration(days: 2)),
+        textColor: Colors.black,
         backgroundColor: Colors.white,
-        selectedColor: Colors.blue,
-        onDateSelected: (date) => print(
-          date.toString(),
-        ),
+        selectedColor: Colors.orange,
+        showMonth: true,
+        onDateSelected: (date) {
+          if (kDebugMode) {
+            print(date.toString());
+          }
+        },
       ),
     );
   }

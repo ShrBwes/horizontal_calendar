@@ -13,3 +13,7 @@
 ### 0.0.4
 
 * Bug Fix.
+
+### 1.0.0
+
+* Migrated to Null Safety
