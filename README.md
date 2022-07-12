@@ -28,9 +28,10 @@ class MyHomePage extends StatelessWidget {
         textColor: Colors.black45,
         backgroundColor: Colors.white,
         selectedColor: Colors.blue,
-        onDateSelected: (date) => print(
-          date.toString(),
-        ),
+        showMonth:true,
+        onDateSelected: (date) {
+          print(date.toString());
+        },
       ),
     );
   }
