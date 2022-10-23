@@ -39,11 +39,13 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title!),
       ),
       body: HorizontalCalendar(
-        date: DateTime.now().add(const Duration(days: 1)),
-        initialDate: DateTime.now().subtract(const Duration(days: 2)),
+        date: DateTime.now(),
+        // date: DateTime.now().add(const Duration(days: 1)),
+        // initialDate: DateTime.now(),
+        initialDate: DateTime.now().subtract(const Duration(days: 1)),
         textColor: Colors.black,
         backgroundColor: Colors.white,
-        selectedColor: Colors.orange,
+        selectedColor: Colors.green,
         showMonth: true,
         onDateSelected: (date) {
           if (kDebugMode) {

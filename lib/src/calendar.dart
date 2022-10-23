@@ -108,8 +108,9 @@ class _CalendarState extends State<HorizontalCalendar> {
       context: context,
       initialDatePickerMode: DatePickerMode.day,
       initialDate: selectedDate,
-      firstDate: widget.initialDate ?? DateTime.now(),
-      lastDate: widget.lastDate ?? DateTime.now().add(Duration(days: 90)),
+      firstDate: DateTime.now().subtract(Duration(days: 90)),
+      lastDate: DateTime.now(),
+      // lastDate: widget.lastDate ?? DateTime.now().add(Duration(days: 90)),
     );
   }
 
@@ -118,12 +119,12 @@ class _CalendarState extends State<HorizontalCalendar> {
     int diffDays = date.difference(selectedDate).inDays;
     int checkDate =
         date.difference(widget.initialDate ?? DateTime.now()).inDays;
-    if (checkDate >= 0) {
+    if (checkDate <= 0) {
       widget.onDateSelected(DateParser.getDate(date));
       setState(() {
         selectedDate = _startDate.add(Duration(days: index));
         _startDate = _startDate.add(Duration(days: index));
       });
-    }
+    } else {}
   }
 }

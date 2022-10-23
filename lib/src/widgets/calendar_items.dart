@@ -43,7 +43,7 @@ class CalendarItems extends StatelessWidget {
               DateParser.getDayOfWeek(date),
               style: Theme.of(context).textTheme.bodyText2!.copyWith(
                     color: diffDays != 0
-                        ? checkPastDate >= 0
+                        ? checkPastDate <= 0
                             ? textColor
                             : Colors.grey[300]
                         : Colors.white,
@@ -55,7 +55,7 @@ class CalendarItems extends StatelessWidget {
               DateParser.getDayOfMonth(date),
               style: Theme.of(context).textTheme.bodyText2!.copyWith(
                     color: diffDays != 0
-                        ? checkPastDate >= 0
+                        ? checkPastDate <= 0
                             ? textColor
                             : Colors.grey[300]
                         : Colors.white,
