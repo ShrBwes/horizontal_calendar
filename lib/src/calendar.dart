@@ -100,8 +100,6 @@ class _CalendarState extends State<HorizontalCalendar> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height / 100;
     _startDate = selectedDate.subtract(Duration(days: 3));
-    final MaterialLocalizations localizations =
-        MaterialLocalizations.of(context);
 
     return Container(
       height: height * (widget.showMonth ? 12 : 10),
@@ -149,7 +147,7 @@ class _CalendarState extends State<HorizontalCalendar> {
               onCalendarPressed: () async {
                 DateTime? date = await selectDate();
                 if (date != null) {
-                  widget.onDateSelected(FormatDate.getDate(date));
+                  widget.onDateSelected(date);
                   setState(() => selectedDate = date);
                 }
               },
@@ -177,7 +175,7 @@ class _CalendarState extends State<HorizontalCalendar> {
     // int diffDays = date.difference(selectedDate).inDays;
     int checkDate = date.difference(widget.initialDate).inDays;
     if (checkDate >= 0) {
-      widget.onDateSelected(FormatDate.getDate(date));
+      widget.onDateSelected(date);
       setState(() {
         selectedDate = _startDate.add(Duration(days: index));
         _startDate = _startDate.add(Duration(days: index));
