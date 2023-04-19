@@ -1,5 +1,30 @@
+/*
+ * Copyright (c) 2023 Biwesh Shrestha
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
+
 import 'package:flutter/material.dart';
-import 'package:horizontal_calendar/horizontal_calendar.dart';
+import 'package:intl/intl.dart';
 
 class CalendarItems extends StatelessWidget {
   CalendarItems({
@@ -40,28 +65,26 @@ class CalendarItems extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              DateParser.getDayOfWeek(date),
-              style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                    color: diffDays != 0
-                        ? checkPastDate >= 0
-                            ? textColor
-                            : Colors.grey[300]
-                        : Colors.white,
-                    fontSize: 10.0,
-                  ),
+              DateFormat.E(Localizations.localeOf(context).toString())
+                  .format(date),
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                  color: diffDays != 0
+                      ? checkPastDate >= 0
+                          ? textColor
+                          : Colors.grey[300]
+                      : Colors.white),
             ),
             SizedBox(height: 2.0),
             Text(
-              DateParser.getDayOfMonth(date),
-              style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                    color: diffDays != 0
-                        ? checkPastDate >= 0
-                            ? textColor
-                            : Colors.grey[300]
-                        : Colors.white,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+              DateFormat.d(Localizations.localeOf(context).toString())
+                  .format(date),
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  color: diffDays != 0
+                      ? checkPastDate >= 0
+                          ? textColor
+                          : Colors.grey[300]
+                      : Colors.white,
+                  fontWeight: FontWeight.bold),
             ),
           ],
         ),

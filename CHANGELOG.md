@@ -14,6 +14,14 @@
 
 * Bug Fix.
 
-### 1.0.0
+### 1.0.1
 
 * Migrated to Null Safety
+  
+### 1.0.2
+
+* intl 0.18.0 support
+  
+### 1.1.0
+
+* locale support added

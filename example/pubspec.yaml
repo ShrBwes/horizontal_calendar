@@ -17,7 +17,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_localizations:
+    sdk: flutter
   horizontal_calendar:
     path: ../
 
