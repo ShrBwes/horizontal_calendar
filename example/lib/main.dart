@@ -105,6 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.white,
         selectedColor: Colors.orange,
         showMonth: true,
+        locale: Localizations.localeOf(context),
         onDateSelected: (date) {
           if (kDebugMode) {
             print(date.toString());

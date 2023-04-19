@@ -39,6 +39,7 @@ class HorizontalCalendar extends StatefulWidget {
     this.backgroundColor,
     this.selectedColor,
     this.showMonth = false,
+    this.locale = const Locale('en', ''),
     required this.onDateSelected,
   })  : initialDate = DateUtils.dateOnly(initialDate ?? DateTime.now()),
         lastDate = DateUtils.dateOnly(
@@ -78,6 +79,9 @@ class HorizontalCalendar extends StatefulWidget {
   /// Condition [boolean] to show the month's name
   final bool showMonth;
 
+  /// Change the locale of the calendar
+  final Locale locale;
+
   /// Called when the user selects a date in the picker.
   final OnDateSelected onDateSelected;
 
@@ -109,8 +113,7 @@ class _CalendarState extends State<HorizontalCalendar> {
         contentPadding: EdgeInsets.all(0.0),
         title: widget.showMonth
             ? Text(
-                DateFormat.yMMM(Localizations.localeOf(context).toString())
-                    .format(selectedDate),
+                DateFormat.yMMM(widget.locale.toString()).format(selectedDate),
                 textAlign: TextAlign.end,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: widget.selectedColor ??
@@ -135,6 +138,7 @@ class _CalendarState extends State<HorizontalCalendar> {
                     selectedColor:
                         widget.selectedColor ?? Theme.of(context).primaryColor,
                     backgroundColor: widget.backgroundColor ?? Colors.white,
+                    locale: widget.locale,
                     onDatePressed: () =>
                         onDatePressed(index, widget.initialDate),
                   );
@@ -159,7 +163,6 @@ class _CalendarState extends State<HorizontalCalendar> {
   }
 
   Future<DateTime?> selectDate() async {
-    print('${Localizations.localeOf(context)}');
     return await showDatePicker(
       context: context,
       initialDatePickerMode: DatePickerMode.day,

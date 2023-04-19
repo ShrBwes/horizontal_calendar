@@ -1,4 +1,4 @@
-# Horizontal Calendar
+yes# Horizontal Calendar
 A flutter plugin to show horizontal view of calendar with date picker
  
 ![calendar image](screenshot.gif)
@@ -7,7 +7,7 @@ A flutter plugin to show horizontal view of calendar with date picker
 In the dependencies: section of your pubspec.yaml, add the following line:
 
 ```yaml
-horizontal_calendar:1.1.0
+horizontal_calendar:1.1.1
 ```
 
 ## Usage

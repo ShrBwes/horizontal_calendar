@@ -25,3 +25,7 @@
 ### 1.1.0
 
 * locale support added
+  
+### 1.1.1
+
+* locale support made more effective

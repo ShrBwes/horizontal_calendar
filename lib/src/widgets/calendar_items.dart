@@ -36,6 +36,7 @@ class CalendarItems extends StatelessWidget {
     required this.textColor,
     required this.selectedColor,
     required this.backgroundColor,
+    required this.locale,
     required this.onDatePressed,
   }) : super(key: key);
 
@@ -46,6 +47,7 @@ class CalendarItems extends StatelessWidget {
   final Color textColor;
   final Color selectedColor;
   final Color backgroundColor;
+  final Locale locale;
   final VoidCallback onDatePressed;
 
   @override
@@ -65,8 +67,7 @@ class CalendarItems extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              DateFormat.E(Localizations.localeOf(context).toString())
-                  .format(date),
+              DateFormat.E(locale.toString()).format(date),
               style: Theme.of(context).textTheme.bodySmall!.copyWith(
                   color: diffDays != 0
                       ? checkPastDate >= 0
@@ -76,8 +77,7 @@ class CalendarItems extends StatelessWidget {
             ),
             SizedBox(height: 2.0),
             Text(
-              DateFormat.d(Localizations.localeOf(context).toString())
-                  .format(date),
+              DateFormat.d(locale.toString()).format(date),
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   color: diffDays != 0
                       ? checkPastDate >= 0
