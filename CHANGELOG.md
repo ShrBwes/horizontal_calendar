@@ -20,7 +20,7 @@
   
 ### 1.0.2
 
-* intl 0.18.0 support
+* intl 0.17.0 support
   
 ### 1.1.0
 
@@ -29,3 +29,7 @@
 ### 1.1.1
 
 * locale support made more effective
+
+### 1.1.2
+
+* intl 0.18.0 support
