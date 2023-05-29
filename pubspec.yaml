@@ -11,7 +11,6 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.18.0
-  nepali_utils: ^3.0.3
 
 dev_dependencies:
   flutter_lints: ^2.0.0

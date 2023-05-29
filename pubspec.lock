@@ -115,14 +115,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.0"
-  nepali_utils:
-    dependency: "direct main"
-    description:
-      name: nepali_utils
-      sha256: "76e896b08270c8f0e9365cf2ce9f8f5cd0fcd47b29d3b4baedef3ce88b7126a2"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.3"
   path:
     dependency: transitive
     description:
